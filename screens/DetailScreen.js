@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, Image } from 'react-native';
 
 const DetailScreen = ({ route, navigation }) => {
   const { item } = route.params; // Retrieve the item passed from the previous screen
@@ -10,7 +10,8 @@ const DetailScreen = ({ route, navigation }) => {
       <Text style={styles.description}>{item.description}</Text>
       <Text style={styles.duration}>Duration: {item.duration}</Text>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        {/* Use the image directly as a source */}
+        <Image source={item.image} style={styles.image} />
       </View>
       <Button title="Back to List" onPress={() => navigation.goBack()} />
     </ScrollView>

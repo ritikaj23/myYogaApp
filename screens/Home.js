@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native'; // Ensure Image is imported
-import { MaterialIcons } from '@expo/vector-icons'; // Ensure vector icons are imported
-
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Import Ionicons
 
 const DATA = [
   {
@@ -10,7 +9,7 @@ const DATA = [
     subtitle: 'Find Inner Calm',
     duration: '10 minutes',
     description: 'A simple meditation practice focused on your breath to help calm the mind and reduce stress.',
-    image: require('../assets/mindful_breathing.png'), // Replace with your actual image path
+    image: require('../assets/mindful_breathing.png'),
   },
   {
     id: '2',
@@ -18,7 +17,7 @@ const DATA = [
     subtitle: 'Embrace Relaxation',
     duration: '15 minutes',
     description: 'A guided session to help you relax and embrace the moment.',
-    image: require('../assets/guided_meditation.png'), // Replace with your actual image path
+    image: require('../assets/guided_meditation.png'),
   },
   {
     id: '3',
@@ -26,7 +25,7 @@ const DATA = [
     subtitle: 'Start Your Journey',
     duration: '30 minutes',
     description: 'An introductory yoga session perfect for beginners.',
-    image: require('../assets/yoga_for_beginners.png'), // Add your actual image path
+    image: require('../assets/yoga_for_beginners.png'),
   },
 ];
 
@@ -34,7 +33,7 @@ const Home = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => navigation.navigate('Detail', { item })} // Pass the selected item to DetailScreen
+      onPress={() => navigation.navigate('Detail', { item })} 
     >
       <Image source={item.image} style={styles.image} />
       <View style={styles.cardContent}>
@@ -44,10 +43,10 @@ const Home = ({ navigation }) => {
       </View>
       <View style={styles.cardActions}>
         <TouchableOpacity>
-          <MaterialIcons name="check-circle" size={24} color="green" />
+          <Ionicons name="checkmark-circle" size={24} color="green" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <MaterialIcons name="edit" size={24} color="blue" />
+          <Ionicons name="create-outline" size={24} color="blue" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -59,10 +58,10 @@ const Home = ({ navigation }) => {
         <Text style={styles.title}>Transform Your Life</Text>
         <View style={styles.headerIcons}>
           <TouchableOpacity>
-            <MaterialIcons name="menu" size={24} color="black" />
+            <Ionicons name="menu" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <MaterialIcons name="settings" size={24} color="black" />
+            <Ionicons name="settings" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </View>
@@ -80,7 +79,6 @@ const Home = ({ navigation }) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
