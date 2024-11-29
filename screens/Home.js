@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
-import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DATA = [
   {
@@ -63,10 +62,10 @@ const Home = ({ navigation }) => {
       </View>
       <View style={styles.cardActions}>
         <TouchableOpacity>
-          <Ionicons name="checkmark-circle" size={24} color="green" />
+          <Image source={require('../assets/icon.png')} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Ionicons name="create-outline" size={24} color="blue" />
+          <Image source={require('../assets/splash-icon.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -78,10 +77,10 @@ const Home = ({ navigation }) => {
         <Text style={styles.title}>Transform Your Life</Text>
         <View style={styles.headerIcons}>
           <TouchableOpacity>
-            <Ionicons name="menu" size={24} color="black" />
+            <Image source={require('../assets/adaptive-icon.png')} style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Ionicons name="settings" size={24} color="black" />
+            <Image source={require('../assets/favicon.png')} style={styles.icon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -102,7 +101,7 @@ const Home = ({ navigation }) => {
         <Text style={styles.navigateButtonText}>Go to My Yoga App</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('Signup')}>
+      <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('PoseOfTheDay')}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
@@ -206,6 +205,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 28,
     lineHeight: 28,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    marginHorizontal: 5,
   },
 });
 

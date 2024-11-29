@@ -7,6 +7,7 @@ import Signup from './screens/Signup';
 import Home from './screens/Home';
 import DetailScreen from './screens/DetailScreen';
 import MyYogaApp from './screens/MyYogaApp';
+import PoseOfTheDay from './screens/PoseOfTheDay';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const Navigation = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen name="PoseOfTheDay" component={PoseOfTheDay} />
         <Stack.Screen name="MyYogaApp" component={MyYogaApp} />
       </Stack.Navigator>
     </NavigationContainer>
