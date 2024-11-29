@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons
+import { Ionicons } from '@expo/vector-icons'; 
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 const DATA = [
   {
@@ -30,6 +31,25 @@ const DATA = [
 ];
 
 const Home = ({ navigation }) => {
+  const [username, setUsername] = useState('');
+
+  // Load user data from AsyncStorage
+  const loadUserData = async () => {
+    try {
+      const userData = await AsyncStorage.getItem('userData');
+      if (userData) {
+        const { username } = JSON.parse(userData);
+        setUsername(username);
+      }
+    } catch (error) {
+      console.error('Failed to load user data', error);
+    }
+  };
+
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.card}
@@ -65,7 +85,7 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={styles.greeting}>Hello, Ritz!</Text>
+      <Text style={styles.greeting}>Hello, {username || 'Guest'}!</Text>
       <Text style={styles.subheading}>Yoga Guide</Text>
       <FlatList
         data={DATA}
@@ -73,12 +93,22 @@ const Home = ({ navigation }) => {
         keyExtractor={item => item.id}
         contentContainerStyle={styles.list}
       />
+      
+      {/* Button to navigate to MyYogaApp */}
+      <TouchableOpacity 
+        style={styles.navigateButton} 
+        onPress={() => navigation.navigate('MyYogaApp')}
+      >
+        <Text style={styles.navigateButtonText}>Go to My Yoga App</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('Signup')}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -147,6 +177,18 @@ const styles = StyleSheet.create({
   },
   cardActions: {
     flexDirection: 'row',
+  },
+  navigateButton: {
+    backgroundColor: '#4CAF50',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  navigateButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   fab: {
     position: 'absolute',
