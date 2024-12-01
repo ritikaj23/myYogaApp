@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, FlatList, Text, View, ActivityIndicator, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, ActivityIndicator, Image, ScrollView } from 'react-native';
 
 const PoseOfTheDay = () => {
   const [pose, setPose] = useState(null);
@@ -9,11 +9,12 @@ const PoseOfTheDay = () => {
   // Function to fetch yoga pose data from the API
   const fetchPoseOfTheDay = async () => {
     try {
-      const response = await fetch('https://yoga-api-nzy4.onrender.com/v1/poses'); // Your API endpoint
+      const response = await fetch('https://yoga-api-nzy4.onrender.com/v1/poses'); 
       if (response.ok) {
         const data = await response.json();
-        // Assuming the API returns an array of poses and we want the first one as the pose of the day
-        setPose(data[0]); // You can enhance this to randomly select a pose or select based on the date
+        // Randomly select a pose from the fetched data
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setPose(data[randomIndex]);
       } else {
         throw new Error('Failed to fetch yoga pose');
       }
@@ -37,22 +38,22 @@ const PoseOfTheDay = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {pose && (
         <>
           <Text style={styles.title}>{pose.english_name}</Text>
-          <Image source={{ uri: pose.url_png }} style={styles.image} />
+          <Image source={{ uri: pose.url_png }} style={styles.image} resizeMode="contain" />
           <Text style={styles.description}>{pose.pose_description}</Text>
           <Text style={styles.benefits}>{pose.pose_benefits}</Text>
         </>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1, 
     padding: 20,
     alignItems: 'center',
     backgroundColor: '#f0f0f0',
@@ -63,8 +64,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   image: {
-    width: '100%',
-    height: 250,
+    width: '100%', 
+    height: undefined, 
+    aspectRatio: 1, 
     borderRadius: 10,
     marginBottom: 10,
   },
