@@ -1,29 +1,39 @@
 {
   "expo": {
-    "name": "myYogaApp",
-    "slug": "myYogaApp",
+    "name": "meditation-app",
+    "slug": "meditation-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.meditationapp",
+      "scheme": "meditationapp",
+      "jsEngine": "hermes"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.myYogaApp"
+      "package": "com.yourcompany.meditationapp",
+      "scheme": "meditationapp",
+      "jsEngine": "hermes",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0985aefd-5f90-4416-b3fb-4b914f9f6aa3"
+      }
     }
   }
 }
